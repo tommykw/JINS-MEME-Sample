@@ -11,3 +11,7 @@ Build
 ### Build
 * Gradle 2.2.1 or later 
 
+Target Device
+----------------------
+Phone and Tablet
+Minimum SDK API Level 16 Android 4.1 (Jelly Bean)
