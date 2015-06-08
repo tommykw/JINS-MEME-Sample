@@ -1,6 +1,6 @@
 JINS MEME Sample
 ======================
-This application is a JINS MEME sample on Android
+This application is a glasses-type wearable device on Android
 
 Build
 ----------------------
