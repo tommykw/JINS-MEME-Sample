@@ -1,0 +1,23 @@
+.amateras
+.settings
+bin
+target
+gen
+*~
+.DS_Store
+proguard
+proguard/*
+app.apk
+yyc.apk
+
+# Intellij project files
+*.iws
+*.iml
+.idea/*
+local.properties
+
+# Gradle directory
+.gradle
+
+# build
+build/
