@@ -4,12 +4,13 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context="com.jins_jp.memelib_standard.MemeDataActivity">
 
     <ListView
-        android:id="@+id/deviceListView"
+        android:id="@+id/data_item_list_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="10dp"/>
+        android:layout_margin="10dp">
+    </ListView>
 
 </LinearLayout>
