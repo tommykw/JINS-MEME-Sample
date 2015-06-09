@@ -14,4 +14,4 @@ Build
 Target Device
 ----------------------
 * Phone and Tablet 
-* Minimum SDK API Level 16 Android 4.1 (Jelly Bean)
+* Minimum SDK API Level 19 Android 4.4 
