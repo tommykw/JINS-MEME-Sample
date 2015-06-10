@@ -12,6 +12,9 @@ import com.jins_jp.meme.MemeLib;
 import com.jins_jp.meme.MemeRealtimeData;
 import com.jins_jp.meme.MemeRealtimeListener;
 
+import tommy_kw.jins_meme_sample.R;
+import tommy_kw.jins_meme_sample.adapter.MemeItemAdapter;
+
 /**
  * Created by tomita on 15/06/09.
  */
@@ -19,6 +22,7 @@ public class DetailActivity extends AppCompatActivity {
     private MemeLib mMemeLib;
     private String mAddress;
     private ListView mItemListView;
+    private MemeItemAdapter mMemeItemAdapter;
 
     final MemeRealtimeListener memeRealtimeListener = new MemeRealtimeListener() {
         @Override
@@ -27,8 +31,8 @@ public class DetailActivity extends AppCompatActivity {
                 @Override
                 public void run() {
                     setProgressBarIndeterminateVisibility(true);
-                    dataItemAdapter.updateMemeData(memeRealtimeData);
-                    dataItemAdapter.notifyDataSetChanged();
+                    mMemeItemAdapter.updateMemeData(memeRealtimeData);
+                    mMemeItemAdapter.notifyDataSetChanged();
                     setProgressBarIndeterminateVisibility(false);
                 }
             });
@@ -40,13 +44,13 @@ public class DetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         supportRequestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
-        setContentView(R.layout.activity_meme_data);
+        setContentView(R.layout.activity_detail);
         init();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_meme_data, menu);
+        getMenuInflater().inflate(R.menu.menu_meme, menu);
         return true;
     }
 
@@ -54,7 +58,7 @@ public class DetailActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_disconnect) {
-            memeLib.disconnect();
+            mMemeLib.disconnect();
             this.finish();
             return true;
         }
@@ -62,17 +66,17 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     void init() {
-        memeLib = MemeLib.getInstance();
-        deviceAddress = getIntent().getStringExtra("device_address");
+        mMemeLib = MemeLib.getInstance();
+        mAddress = getIntent().getStringExtra("device_address");
 
-        dataItemListView = (ListView)findViewById(R.id.data_item_list_view);
-        dataItemAdapter = new MemeDataItemAdapter(this);
-        dataItemListView.setAdapter(dataItemAdapter);
+        mItemListView = (ListView)findViewById(R.id.data_item_list_view);
+        mMemeItemAdapter = new MemeItemAdapter(this);
+        mItemListView.setAdapter(mMemeItemAdapter);
 
-        memeLib.connect(deviceAddress, new MemeConnectListener() {
+        mMemeLib.connect(mAddress, new MemeConnectListener() {
             @Override
             public void connectCallback(boolean status) {
-                memeLib.startListen(memeRealtimeListener);
+                mMemeLib.startListen(memeRealtimeListener);
             }
         });
     }
